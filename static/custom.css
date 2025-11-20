@@ -18,9 +18,24 @@ h3 {
     border-radius: 12px;
 }
 
+.info-row, .select-district-card {
+    margin-bottom: 20px;
+}
+
 #layer-checklist {
     display: flex;
     flex-direction: row;
     gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+#layer-checklist label {
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+#layer-checklist input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+}

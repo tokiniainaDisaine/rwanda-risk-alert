@@ -14,7 +14,7 @@ from src.geometry import districts
 from src.fetch_datasets import fetch_all
 
 chirps, era5_temp, soil_moist, ndvi, dem, slope = fetch_all()
- 
+
 def aggregate_monthly(image_collection):
     monthly_result = image_collection.map(lambda img: img.set("month", img.date().format("YYYY-MM")))
     monthly_sum = monthly_result.reduce(ee.Reducer.sum())
@@ -29,7 +29,7 @@ def calculate_baseline(image_collection):
     baseline_mean = baseline.mean()
 
     # Recent period (e.g., 2020–2025)
-    recent = image_collection.filterDate("2025-01-01", "2025-07-31").mean()
+    recent = image_collection.filterDate("2025-01-01", "2025-10-31").mean()
 
     # Rainfall anomaly (recent vs baseline)
     anomaly = recent.subtract(baseline_mean).divide(baseline_mean)

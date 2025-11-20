@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rwanda Climate Alerts</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <h3 style="text-align: center; margin-bottom: 30px;">🌍 Natural Disaster Dashboard</h3>
+
+        <!-- First Row -->
+        <div class="row">
+            <!-- Left Column: Map -->
+            <div class="col-md-6">
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">Map Layers</div>
+                    <div class="card-body">
+                        <!-- Layer Checklist -->
+                        <div id="layer-checklist" style="width: 100%; text-align: center; margin-bottom: 10px;">
+                            <label><input type="checkbox" value="flood"> Flood Risk</label>
+                            <label><input type="checkbox" value="drought"> Drought Risk</label>
+                            <label><input type="checkbox" value="landslide"> Landslide Risk</label>
+                            <label><input type="checkbox" value="districts" checked> District Boundaries</label>
+                        </div>
+                        
+                        <!-- Map Container -->
+                        <div id="map" style="width: 100%; height: 450px; margin-top: 10px; position: relative;"></div>
+                        
+                        <!-- Legend -->
+                        <div style="position: absolute; bottom: 20px; left: 30px; background: rgba(255,255,255,0.85); 
+                                    padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;">
+                            <div style="font-size: 16px;">
+                                <span style="color: red; font-weight: bold;">0</span>
+                                <span style="margin-left: 5px; color: red;"> (High Risk)</span>
+                                <span style="margin: 0 8px;"> | </span>
+                                <span style="color: green; font-weight: bold;">1</span>
+                                <span style="margin-left: 5px; color: green;"> (Low Risk)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: High Risk Areas -->
+            <div class="col-md-6">
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">High Risk Areas</div>
+                    <div class="card-body">
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">Affected Population</div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="row">
+            <!-- Right Column: District Data -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">District Data</div>
+                    <div class="card-body">
+                        <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                        <!-- District Dropdown -->
+                        <select id="district-dropdown" class="form-select" style="margin-bottom: 15px;">
+                            {% for district in districts %}
+                            <option value="{{ district }}">{{ district }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <!-- Dataset Dropdown -->
+                        <select id="dataset-dropdown" class="form-select" style="margin-bottom: 15px;">
+                            <option value="chirps">Rainfall</option>
+                            <option value="era5_temp">Temperature</option>
+                            <option value="soil_moist">Soil Moisture</option>
+                            <option value="ndvi">Vegetation health</option>
+                        </select>
+
+                        <!-- Plot Image -->
+                        <img id="risk-plot" src="" alt="Loading plot..."
+                             style="width: 100%; margin-top: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Left Column: District Data -->
+            <div class="col-md-6">
+                <!-- First Row: Select District -->
+                <div class="card select-district-card">
+                    <div class="card-header">Last Month's Data</div>
+                    <div class="card-body">
+                        <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                        <select id="district-dropdown-2" class="form-select" style="margin-bottom: 15px;">
+                            {% for district in districts %}
+                            <option value="{{ district }}">{{ district }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Second Row: Rainfall & Temperature -->
+                <div class="row info-row">
+                    <!-- Rainfall -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Rainfall</div>
+                            <div class="card-body">
+                                <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                                <select id="district-dropdown-3" class="form-select" style="margin-bottom: 15px;">
+                                    {% for district in districts %}
+                                    <option value="{{ district }}">{{ district }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temperature -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Temperature</div>
+                            <div class="card-body">
+                                <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                                <select id="district-dropdown-4" class="form-select" style="margin-bottom: 15px;">
+                                    {% for district in districts %}
+                                    <option value="{{ district }}">{{ district }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Row: Soil Moisture & NDVI -->
+                <div class="row info-row">
+                    <!-- Soil Moisture -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Soil Moisture</div>
+                            <div class="card-body">
+                                <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                                <select id="district-dropdown-5" class="form-select" style="margin-bottom: 15px;">
+                                    {% for district in districts %}
+                                    <option value="{{ district }}">{{ district }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NDVI -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">NDVI</div>
+                            <div class="card-body">
+                                <h5 style="margin-bottom: 10px;">Select district</h5>
+
+                                <select id="district-dropdown-6" class="form-select" style="margin-bottom: 15px;">
+                                    {% for district in districts %}
+                                    <option value="{{ district }}">{{ district }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 40px; color: #888;">
+            © 2025 Rwanda Climate Alerts | Powered by Earth Engine & Flask
+        </footer>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
