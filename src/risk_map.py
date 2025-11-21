@@ -100,7 +100,6 @@ def calculate_indexes():
 
     return flood_risk_index, drought_risk_index, landslide_risk_index
 
-
 flood_risk, drought_risk, landslide_risk = calculate_indexes()
 map_layers_dict = {
     "districts": districts,
