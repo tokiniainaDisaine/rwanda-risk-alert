@@ -98,7 +98,6 @@ def calculate_indexes():
                             .add(soil_moist_norm.multiply(0.3)) \
                             .add(slope_norm.multiply(0.3))
 
-
     return flood_risk_index, drought_risk_index, landslide_risk_index
 
 

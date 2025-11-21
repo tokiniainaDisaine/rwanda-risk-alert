@@ -78,18 +78,23 @@ function updatePlot() {
 
 // Function to update monthly data
 function updateMonthly() {
-    const district = document.getElementById('district-dropdown--info').value;
+    const info_district = document.getElementById('district-dropdown-info').value;
+    const chirps = document.getElementById('chirps');
+    const temp = document.getElementById('temp');
+    const soil_moist = document.getElementById('soil_moist');
+    const ndvi = document.getElementById('ndvi');
 
     // Fetch plot from Flask API
-    fetch(`/api/info?district=${encodeURIComponent(district)}`)
+    fetch(`/api/info?info_district=${encodeURIComponent(info_district)}`)
     .then(response => response.json())
     .then(data => {
-        plotImg.src = data.image;
-        plotImg.alt = `${dataset} plot for ${district}`;
+        chirps.textContent = `${data.chirps} mm`;
+        temp.textContent = `${data.era5_temp} °C`;
+        soil_moist.textContent = `${data.soil_moist} %`;
+        ndvi.textContent = `${data.ndvi}`;
     })
     .catch(error => {
         console.error('Error fetching the mean:', error);
-        plotImg.alt = 'Error loading plot';
     });
 }
 
@@ -101,6 +106,10 @@ document.querySelectorAll('#layer-checklist input[type="checkbox"]').forEach(che
 document.getElementById('district-dropdown').addEventListener('change', updatePlot);
 document.getElementById('dataset-dropdown').addEventListener('change', updatePlot);
 
+document.getElementById('district-dropdown-info').addEventListener('change', updateMonthly);
+
 // Initial load
 updateMapLayers();
 updatePlot();
+
+updateMonthly();
