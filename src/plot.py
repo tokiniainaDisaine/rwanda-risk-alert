@@ -58,7 +58,7 @@ dataset_dict = {
 }
 
 # Fetch Time series
-def get_time_series(image_collection, district_name, start_date, end_date, scale):
+def get_time_series(image_collection, district_name, start_date, end_date, scale=1000):
     district = ee.FeatureCollection("FAO/GAUL/2015/level2") \
                     .filter(ee.Filter.eq("ADM0_NAME", "Rwanda")) \
                     .filter(ee.Filter.eq("ADM2_NAME", district_name)) \

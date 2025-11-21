@@ -76,6 +76,23 @@ function updatePlot() {
     });
 }
 
+// Function to update monthly data
+function updateMonthly() {
+    const district = document.getElementById('district-dropdown--info').value;
+
+    // Fetch plot from Flask API
+    fetch(`/api/info?district=${encodeURIComponent(district)}`)
+    .then(response => response.json())
+    .then(data => {
+        plotImg.src = data.image;
+        plotImg.alt = `${dataset} plot for ${district}`;
+    })
+    .catch(error => {
+        console.error('Error fetching the mean:', error);
+        plotImg.alt = 'Error loading plot';
+    });
+}
+
 // Event listeners
 document.querySelectorAll('#layer-checklist input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('change', updateMapLayers);

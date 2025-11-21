@@ -4,10 +4,10 @@ import numpy as np
 import io, base64
 
 from flask import Flask, render_template, request, jsonify
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from config import EE_PROJECT
+# import pandas as pd
+# import matplotlib.pyplot as plt
+#
+# from config import EE_PROJECT
 from src.risk_map import get_image_url
 from src.plot import *
 from src.fetch_datasets import fetch_all
@@ -75,6 +75,54 @@ def get_plot():
     return jsonify({
         'image': "data:image/png;base64," + encoded
     })
+
+
+@app.route('/api/info')
+def get_info():
+    """
+    API endpoint to generate and return plot as base64 image
+    -----------------Feel free to use for loop if things start to get annoying-------------------------
+    """
+    selected_district = request.args.get('district', district_list[0])
+
+    # Generate time series data
+    chirps_time_series = get_time_series(
+                            dataset_dict["chirps"]["dataset"],
+                            selected_district,
+                            "2025-10-01",
+                            "2025-10-31")
+    chirps_df = ee_array_to_df(chirps_time_series, dataset_dict["chirps"]["list of bands"])
+
+    era5_temp_time_series = get_time_series(
+                            dataset_dict["era5_temp"]["dataset"],
+                            selected_district,
+                            "2025-10-01",
+                            "2025-10-31")
+    era5_temp_df = ee_array_to_df(era5_temp_time_series, dataset_dict["era5_temp"]["list of bands"])
+    era5_temp_df["temperature_2m"] = era5_temp_df["temperature_2m"].apply(t_kelvin_to_celsius)
+
+    soil_moist_time_series = get_time_series(
+                            dataset_dict["soil_moist"]["dataset"],
+                            selected_district,
+                            "2025-10-01",
+                            "2025-10-31")
+    soil_moist_df = ee_array_to_df(soil_moist_time_series, dataset_dict["soil_moist"]["list of bands"])
+
+    ndvi_time_series = get_time_series(
+                            dataset_dict["ndvi"]["dataset"],
+                            selected_district,
+                            "2025-10-01",
+                            "2025-10-31")
+    ndvi_df = ee_array_to_df(ndvi_time_series, dataset_dict["ndvi"]["list of bands"])
+
+    info_result = {
+        "chirps": chirps_df.to_dict(orient="records"),
+        "era5_temp": era5_temp_df.to_dict(orient="records"),
+        "soil_moist": soil_moist_df.to_dict(orient="records"),
+        "ndvi": ndvi_df.to_dict(orient="records"),
+    }
+
+    return jsonify(info_result)
 
 
 @app.route('/api/layers', methods=['POST'])
