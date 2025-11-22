@@ -1,14 +1,21 @@
 from config import EE_PROJECT
-import ee
-try:
-    ee.Authenticate()
-except Exception as e:
-    print(f"Error authenticating Earth Engine: {e}. Please ensure you have Earth Engine access.")
 
-try:
-    ee.Initialize(project=EE_PROJECT)
-except Exception as e:
-    print(f"Error initializing Earth Engine: {e}. Please ensure you are authenticated.")
+import os
+import ee
+email = 'alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com'
+path = os.getenv("EE_KEY_PATH")
+ee.ServiceAccountCredentials(email, path)
+ee.Initialize()
+
+# try:
+#     ee.Authenticate()
+# except Exception as e:
+#     print(f"Error authenticating Earth Engine: {e}. Please ensure you have Earth Engine access.")
+#
+# try:
+#     ee.Initialize(project=EE_PROJECT)
+# except Exception as e:
+#     print(f"Error initializing Earth Engine: {e}. Please ensure you are authenticated.")
 
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates

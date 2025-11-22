@@ -1,18 +1,23 @@
 # Imports and Pre-requisites
 from src.geometry import districts, rwanda, rwanda_buffered
 from config import EE_PROJECT
-    
+
+import os
 import ee
-try:
-    ee.Authenticate()
-except Exception as e:
-    print(f"Error authenticating Earth Engine: {e}. Please ensure you have Earth Engine access.")
+email = 'alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com'
+path = os.getenv("EE_KEY_PATH")
+ee.ServiceAccountCredentials(email, path)
+ee.Initialize()
 
-try:
-    ee.Initialize(project=EE_PROJECT)
-except Exception as e:
-    print(f"Error initializing Earth Engine: {e}. Please ensure you are authenticated.")
-
+# try:
+#     ee.Authenticate()
+# except Exception as e:
+#     print(f"Error authenticating Earth Engine: {e}. Please ensure you have Earth Engine access.")
+#
+# try:
+#     ee.Initialize(project=EE_PROJECT)
+# except Exception as e:
+#     print(f"Error initializing Earth Engine: {e}. Please ensure you are authenticated.")
 
 # Collect Datasets
 def fetch_dataset(image_collection,
