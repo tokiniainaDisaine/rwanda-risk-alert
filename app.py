@@ -15,10 +15,10 @@ from src.fetch_datasets import fetch_all
 
 import os
 import ee
-email = 'alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com'
+email = "alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com"
 path = os.getenv("EE_KEY_PATH")
-ee.ServiceAccountCredentials(email, path)
-ee.Initialize()
+credentials = ee.ServiceAccountCredentials(email, path)
+ee.Initialize(credentials)
 
 # try:
 #     ee.Authenticate()
