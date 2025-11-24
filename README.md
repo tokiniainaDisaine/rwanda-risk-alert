@@ -2,7 +2,7 @@
 
 Interactive Flask-based web application for visualizing climate risk indices (flood, drought, landslide) for Rwanda using Google Earth Engine datasets and real-time climate data.
 
-[Demo video](https://www.youtube.com/watch?v=w2GWCbm0y9s)
+[Demo video](https://youtu.be/MunDz9aqjms)
 
 ## Features
 - Interactive map (Leaflet) with selectable risk layers and district boundaries
@@ -34,16 +34,39 @@ Install quickly:
 python -m pip install -r requirements.txt
 ```
 
+## Running the app
+### 1. Install the dependencies:
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 2. Authenticate the Google Earth Engine API:
+There are two possible ways to authenticate Earth Engine:
+
+* A. Through a service account key:
+
+Add your json key path as an environment variable
+```bash
+export EE_KEY_PATH='/path/to/your/key.json'
+```
+
+* B. From repository root (if you have a Google Earth Engine account) :
+```bash
+earthengine authenticate
+```
+Follow the printed URL and paste the token when prompted.
+
+
 ## Google Earth Engine setup
 1. Install Earth Engine API if not installed:
    ```bash
    python -m pip install earthengine-api
    ```
 2. Authenticate (command-line recommended):
-   ```bash
-   earthengine authenticate
-   ```
-   Follow the printed URL and paste the token when prompted.
+      ```bash
+      earthengine authenticate
+      ```
+      Follow the printed URL and paste the token when prompted.
 
 3. In code the project is initialized as:
    ```python
@@ -58,13 +81,6 @@ For more details, please refer to the Earth Engine documentation:
 -  [Authentication and Initialization](https://developers.google.com/earth-engine/guides/auth)
 
 Note: Earth Engine objects live in the cloud. Local shapefiles must be uploaded as EE assets (or converted to CSV/GeoJSON and accessed locally) — `.getInfo()` only works on EE objects already in the cloud.
-
-## Running the app
-From repository root (Windows PowerShell / CMD):
-```bash
-python app.py
-```
-Open http://127.0.0.1:5000 in a browser.
 
 ## Data Sources
 - [Earth Engine Datasets](https://earthengine.google.com/)
@@ -164,6 +180,11 @@ This application relies on several APIs, datasets, and open-source technologies.
 - **Reference**: [National Risk Atlas of Rwanda](https://www.gfdrr.org/sites/default/files/publication/National_Risk_Atlas_of_Rwanda_electronic_version_0.pdf)
 - **Provider**: Global Facility for Disaster Reduction and Recovery (GFDRR) & Government of Rwanda
 - **Usage**: Model validation and risk assessment methodology
+
+### Initial Personal Project
+
+- **Provider**: [Inital Prototype](https://github.com/TheRealToky/rwanda-climate-alerts)
+- **Usage**: The proprietary base code that was used for this project
 
 ---
 
