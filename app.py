@@ -12,7 +12,6 @@ from src.risk_map import get_image_url
 from src.plot import *
 from src.fetch_datasets import fetch_all
 
-
 import os
 import ee
 email = "alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com"
@@ -90,7 +89,7 @@ def get_info():
     API endpoint to calculate the
     -----------------Feel free to use for loop if things start to get annoying-------------------------
     """
-    selected_district = request.args.get('district', district_list[0])
+    selected_district = request.args.get('info_district', district_list[0])
 
     # Generate time series data
     chirps_time_series = get_time_series(
@@ -101,7 +100,6 @@ def get_info():
     chirps_df = ee_array_to_df(chirps_time_series, dataset_dict["chirps"]["list of bands"])
     raw_mean_chirps = chirps_df["precipitation"].mean()
     mean_chirps = np.round(raw_mean_chirps, 2)
-
 
     era5_temp_time_series = get_time_series(
                             dataset_dict["era5_temp"]["dataset"],
@@ -161,6 +159,6 @@ def get_layers():
     
     return jsonify({'layers': layers})
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# --------------------------- For Testing Locally ---------------------------
+# if __name__ == "__main__":
+#     app.run(debug=True)

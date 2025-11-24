@@ -40,36 +40,18 @@
                         <div style="position: absolute; bottom: 20px; left: 30px; background: rgba(255,255,255,0.85); 
                                     padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;">
                             <div style="font-size: 16px;">
-                                <span style="color: red; font-weight: bold;">0</span>
-                                <span style="margin-left: 5px; color: red;"> (High Risk)</span>
-                                <span style="margin: 0 8px;"> | </span>
-                                <span style="color: green; font-weight: bold;">1</span>
+                                <span style="color: green; font-weight: bold;">0</span>
                                 <span style="margin-left: 5px; color: green;"> (Low Risk)</span>
+                                <span style="margin: 0 8px;"> | </span>
+                                <span style="color: red; font-weight: bold;">1</span>
+                                <span style="margin-left: 5px; color: red;"> (High Risk)</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: High Risk Areas -->
-            <div class="col-md-6">
-                <div class="card" style="margin-bottom: 20px;">
-                    <div class="card-header">High Risk Areas</div>
-                    <div class="card-body">
-                    </div>
-                </div>
-
-                <div class="card" style="margin-bottom: 20px;">
-                    <div class="card-header">Affected Population</div>
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Second Row -->
-        <div class="row">
-            <!-- Left Column: District Data -->
+            <!-- Right Column: Plot -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">District Data</div>
@@ -97,11 +79,14 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Right Column: Monthly Data -->
-            <div class="col-md-6">
-                <!-- First Row: Select District -->
-                <div class="card select-district-card">
+        <!-- Second Row -->
+        <div class="row">
+            <!-- Monthly Data -->
+            <!-- First Row: Select District -->
+            <div class="col-12">
+                <div class="card select-district-card" id="select-district-monthly">
                     <div class="card-header">Last Month's Data</div>
                     <div class="card-body">
                         <h5 style="margin-bottom: 10px;">Select district</h5>
@@ -113,8 +98,10 @@
                         </select>
                     </div>
                 </div>
+            </div>
 
-                <!-- Second Row: Rainfall & Temperature -->
+            <!-- Second Row: Rainfall & Temperature -->
+            <div class="col-12">
                 <div class="row info-row">
                     <!-- Rainfall -->
                     <div class="col-md-6">

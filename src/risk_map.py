@@ -16,7 +16,7 @@ ee.Initialize(credentials)
 #     ee.Initialize(project=EE_PROJECT)
 # except Exception as e:
 #     print(f"Error initializing Earth Engine: {e}. Please ensure you are authenticated.")
-#
+
 from src.geometry import districts
 from src.fetch_datasets import fetch_all
 
