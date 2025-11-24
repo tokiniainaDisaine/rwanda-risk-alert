@@ -4,6 +4,8 @@ Interactive Flask-based web application for visualizing climate risk indices (fl
 
 [Demo video](https://youtu.be/MunDz9aqjms)
 
+[Check out the website ;)](https://athena-holdings.tech)
+
 ## Features
 - Interactive map (Leaflet) with selectable risk layers and district boundaries
 - Time-series plots for districts (precipitation, temperature, soil moisture, vegetation health (NDVI))
