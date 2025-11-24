@@ -1,5 +1,25 @@
+# Rwanda Climate Alerts - Python Dependencies
+#
+# This file lists all Python packages required to run the Rwanda Climate Alerts
+# Flask application. Install these dependencies using:
+#   pip install -r requirements.txt
+#
+# Core Packages:
+# - Flask: Web framework for serving the dashboard
+# - earthengine-api: Google Earth Engine Python API for satellite data access
+# - matplotlib: Plotting library for generating time series visualizations
+# - pandas: Data manipulation and analysis
+# - numpy: Numerical computing library
+
+# Web Framework
 Flask~=3.0.3
-earthengine-api~=1.6.11rc0
+
+# Google Earth Engine API for satellite imagery and climate data
+earthengine-api~=1..11rc0
+
+# Data Visualization
 matplotlib~=3.10.6
+
+# Data Processing
 pandas~=2.3.3
 numpy~=2.3.3

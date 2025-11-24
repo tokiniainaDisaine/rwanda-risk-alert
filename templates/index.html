@@ -1,3 +1,17 @@
+<!--
+    Rwanda Climate Alerts - Main Dashboard Template
+    
+    This is the main HTML template for the Rwanda Climate Alerts dashboard.
+    It provides a responsive layout with:
+    - Interactive map with risk layer overlays
+    - Time series plot visualization
+    - Monthly climate statistics cards
+    
+    Structure:
+    1. Head: Meta tags, external dependencies (Bootstrap, Leaflet), custom styles
+    2. Body: Container with map, plots, and statistics
+    3. Scripts: JavaScript libraries and custom app logic
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +19,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rwanda Climate Alerts</title>
     
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS - Modern UI framework -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS - Interactive map library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <!-- Custom CSS -->
+    <!-- Custom CSS - Application-specific styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 </head>
 <body>
@@ -149,19 +163,21 @@
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer Section - Copyright and attribution -->
         <footer style="text-align: center; margin-top: 40px; color: #888;">
             © 2025 Rwanda Climate Alerts | Powered by Earth Engine & Flask
         </footer>
     </div>
     
-    <!-- Leaflet JS -->
+    <!-- JavaScript Dependencies -->
+    
+    <!-- Leaflet JS - Interactive mapping library -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JS - UI interactions and components -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
+    <!-- Custom JavaScript - Dashboard logic and API interactions -->
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

@@ -1,27 +1,73 @@
+/**
+ * Rwanda Climate Alerts - Custom Styles
+ * 
+ * This stylesheet provides custom styling for the Rwanda Climate Alerts dashboard,
+ * extending Bootstrap's default styles with application-specific design elements.
+ * 
+ * Sections:
+ * - General Layout Styles
+ * - Card Components
+ * - Map Layer Controls
+ * - Responsive Spacing
+ */
+
+/* ============================================================================
+   General Layout Styles
+   ============================================================================ */
+
+/**
+ * Body background - Light gray for subtle contrast
+ */
 body {
     background-color: #f8fafc;
 }
 
+/**
+ * Main headings - Dark blue-gray with bold weight
+ */
 h3 {
     color: #2c3e50;
     font-weight: 700;
 }
 
+/* ============================================================================
+   Card Components
+   ============================================================================ */
+
+/**
+ * Card headers - Light gray background for section separation
+ * Enhanced font weight and size for improved readability
+ */
 .card-header {
     background-color: #e3e3e3 !important;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
+/**
+ * Card containers - Subtle shadow and rounded corners
+ * Creates depth and modern appearance
+ */
 .card {
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     border-radius: 12px;
 }
 
+/* ============================================================================
+   Responsive Spacing
+   ============================================================================ */
+
+/**
+ * Consistent bottom margin for info rows and district selection cards
+ */
 .info-row, .select-district-card {
     margin-bottom: 20px;
 }
 
+/**
+ * Monthly district selector - Full width with proper spacing
+ * Ensures consistent layout within Bootstrap grid
+ */
 #select-district-monthly {
     width: 100%;
     max-width: 100%;
@@ -29,6 +75,14 @@ h3 {
     margin-bottom: 20px;
 }
 
+/* ============================================================================
+   Map Layer Controls
+   ============================================================================ */
+
+/**
+ * Layer checkbox container - Horizontal flex layout
+ * Centers checkboxes with consistent spacing and wrapping support
+ */
 #layer-checklist {
     display: flex;
     flex-direction: row;
@@ -37,11 +91,19 @@ h3 {
     flex-wrap: wrap;
 }
 
+/**
+ * Layer checkbox labels - Pointer cursor for better UX
+ * Adds padding for larger click target
+ */
 #layer-checklist label {
     cursor: pointer;
     padding: 4px 8px;
 }
 
+/**
+ * Layer checkboxes - Pointer cursor and spacing
+ * Consistent spacing between checkbox and label text
+ */
 #layer-checklist input[type="checkbox"] {
     margin-right: 5px;
     cursor: pointer;
