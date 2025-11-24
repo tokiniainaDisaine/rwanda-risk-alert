@@ -15,7 +15,7 @@
 Flask~=3.0.3
 
 # Google Earth Engine API for satellite imagery and climate data
-earthengine-api~=1..11rc0
+earthengine-api~=1.6.11
 
 # Data Visualization
 matplotlib~=3.10.6

@@ -16,8 +16,7 @@ import ee
 # Initialize Google Earth Engine
 import os
 email = "alu-summative-account@rwanda-climate-alerts.iam.gserviceaccount.com"
-# path = os.getenv("EE_KEY_PATH")
-path = "D:\\PC DISAINE\\toky\\ALU\\term_3\\keys\\rwanda-climate-alerts-c17300261abd.json"
+path = os.getenv("EE_KEY_PATH")
 credentials = ee.ServiceAccountCredentials(email, path)
 ee.Initialize(credentials)
 
