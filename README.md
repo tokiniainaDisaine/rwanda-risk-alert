@@ -36,28 +36,64 @@ Install quickly:
 python -m pip install -r requirements.txt
 ```
 
-## Running the app
-### 1. Install the dependencies:
+## Running the app locally
+
+### 1. Clone the repo:
+```bash
+git clone https://github.com/tokiniainaDisaine/rwanda-risk-alert.git
+cd rwanda-risk-alert
+```
+
+### 2. Setup a virtual environment:
+Create the virtual environment.
+```bash
+python -m venv /path/to/your/venv
+```
+Activate it:
+```bash
+source /path/to/your/venv/bin/activate
+```
+
+### 3. Install the dependencies:
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### 2. Authenticate the Google Earth Engine API:
+### 4. Authenticate the Google Earth Engine API:
 There are two possible ways to authenticate Earth Engine:
 
 * A. Through a service account key:
 
-Add your json key path as an environment variable
-```bash
-export EE_KEY_PATH='/path/to/your/key.json'
-```
+    Add your json key path as an environment variable
+    ```bash
+    export EE_KEY_PATH='/path/to/your/key.json'
+    ```
 
 * B. From repository root (if you have a Google Earth Engine account) :
-```bash
-earthengine authenticate
-```
-Follow the printed URL and paste the token when prompted.
+    ```bash
+    earthengine authenticate
+    ```
+    Follow the printed URL and paste the token when prompted.
 
+### 5. Run the app:
+
+Uncomment the last 2 lines of app.py:
+```python
+if __name__ == "__main__":
+    app.run()
+```
+
+Then run: 
+
+```bash
+python app.py
+```
+Finally, follow the link from the output:
+  
+e.g. 
+```
+http://127.0.0.1:5000
+```
 
 ## Google Earth Engine setup
 1. Install Earth Engine API if not installed:
@@ -190,7 +226,7 @@ This application relies on several APIs, datasets, and open-source technologies.
 
 ---
 
-**Disclaimer**: This application is for educational and informational purposes. While we strive for accuracy, users should verify critical information with official sources before making decisions based on this data.
+**Disclaimer**: This application is for educational and informational purposes only. While we strive for accuracy, users should verify critical information with official sources before making decisions based on this data.
 
 
 ## Styling (CSS)
