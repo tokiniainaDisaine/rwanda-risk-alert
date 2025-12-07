@@ -223,6 +223,7 @@ This application relies on several APIs, datasets, and open-source technologies.
 
 - **Provider**: [Inital Prototype](https://github.com/TheRealToky/rwanda-climate-alerts)
 - **Usage**: The proprietary base code that was used for this project
+- Copyright (c) 2025 TheRealToky
 
 ---
 
@@ -255,9 +256,6 @@ body { background:#f8fafc; font-family: "Segoe UI", Roboto, Arial; }
 - Earth Engine errors: re-run `earthengine authenticate` and ensure `ee.Initialize()` is called. For headless servers, follow the CLI instructions.
 - If map tiles are blank: verify `get_image_url` returns a valid tile/XYZ URL or GeoJSON and that Leaflet layers are created correctly.
 - For local testing of shapefiles: use `geopandas` to inspect before uploading to EE.
-
-## License
-Add a license of your choice (e.g., MIT). This repository does not include a license file by default.
 
 ## Contact / Next steps
 - Implement missing functions in `src/` to produce working layers/plots.
